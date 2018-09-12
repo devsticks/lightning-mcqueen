@@ -1,5 +1,5 @@
 //********************************************************************
-//*                    EEE2046F C template                           *
+//*                    EEE3099S Robot Project Ver1.0                 *
 //*==================================================================*
 //* WRITTEN BY:    	                 		             *
 //* DATE CREATED:                                                    *
@@ -37,15 +37,19 @@ void detection(void);
 //====================================================================
 void main (void)
 {
-	init_LCD();					// Initialise lcd
-	lcd_putstring("Hopefully this works");		// Display string on line 1
-	lcd_command(LINE_TWO);				// Move cursor to line 2
-	lcd_putstring("pls pls pls");			// Display string on line 2
+	init_LCD();									//Initialise lcd
+	lcd_putstring("Hopefully this works");		//Display string on line 1
+	lcd_command(LINE_TWO);						//Move cursor to line 2
+	lcd_putstring("pls pls pls");				//Display string on line 2
+
+	//calling initialisation functions
 	init_PWM();
 	init_sensors();
+
+	//infinite loop
 	while (1) {
 
-		detection();
+		detection(); //calls line detection function
 
 		if (farLeft == 1) {
 			TIM2->CCR3 = 100*80;
@@ -58,10 +62,8 @@ void main (void)
 		}
 		Delay();
 
-
-
 	}//end forever
-}							// End of main
+}//end main
 
 //====================================================================
 // FUNCTION DEFINITIONS

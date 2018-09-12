@@ -1,0 +1,13 @@
+!SESSION 2018-09-12 10:54:01.615 -----------------------------------------------
+eclipse.buildId=4.6.3.M20170301-0400
+java.version=1.8.0_77
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.cpp.product -product org.eclipse.epp.package.cpp.product -product org.eclipse.epp.package.cpp.product -product org.eclipse.epp.package.cpp.product -keyring /Users/maxchernotsky/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.cpp.product -product org.eclipse.epp.package.cpp.product -product org.eclipse.epp.package.cpp.product -data /Users/maxchernotsky/Dropbox/UCT/2018/Semester 2/4 - EEE3099S/robot-project -product org.eclipse.epp.package.cpp.product -keyring /Users/maxchernotsky/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2018-09-12 10:54:07.473
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.cdt.core 1 0 2018-09-12 10:54:59.435
+!MESSAGE Indexed 'Robot_Ver1.0' (24 sources, 175 headers) in 10,7 sec: 12 160 declarations; 21 713 references; 0 unresolved inclusions; 76 syntax errors; 131 unresolved names (0,39%)

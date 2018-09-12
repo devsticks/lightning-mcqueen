@@ -48,38 +48,38 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 SECONDARY_FLASH += \
-PWM_Led.hex \
+Robot_Ver1.0.hex \
 
 SECONDARY_SIZE += \
-PWM_Led.siz \
+Robot_Ver1.0.siz \
 
 
 # All Target
-all: PWM_Led.elf secondary-outputs
+all: Robot_Ver1.0.elf secondary-outputs
 
 # Tool invocations
-PWM_Led.elf: $(OBJS) $(USER_OBJS)
+Robot_Ver1.0.elf: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GNU ARM Cross C++ Linker'
-	arm-none-eabi-g++ -mcpu=cortex-m0 -mthumb -Og -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants -Wall -Wextra  -g3 -T mem.ld -T libs.ld -T sections.ld -nostartfiles -Xlinker --gc-sections -L"../ldscripts" -Wl,-Map,"PWM_Led.map" --specs=nano.specs -o "PWM_Led.elf" $(OBJS) $(USER_OBJS) $(LIBS)
+	arm-none-eabi-g++ -mcpu=cortex-m0 -mthumb -Og -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants -Wall -Wextra  -g3 -T mem.ld -T libs.ld -T sections.ld -nostartfiles -Xlinker --gc-sections -L"../ldscripts" -Wl,-Map,"Robot_Ver1.0.map" --specs=nano.specs -o "Robot_Ver1.0.elf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-PWM_Led.hex: PWM_Led.elf
+Robot_Ver1.0.hex: Robot_Ver1.0.elf
 	@echo 'Invoking: GNU ARM Cross Create Flash Image'
-	arm-none-eabi-objcopy -O ihex "PWM_Led.elf"  "PWM_Led.hex"
+	arm-none-eabi-objcopy -O ihex "Robot_Ver1.0.elf"  "Robot_Ver1.0.hex"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-PWM_Led.siz: PWM_Led.elf
+Robot_Ver1.0.siz: Robot_Ver1.0.elf
 	@echo 'Invoking: GNU ARM Cross Print Size'
-	arm-none-eabi-size --format=berkeley "PWM_Led.elf"
+	arm-none-eabi-size --format=berkeley "Robot_Ver1.0.elf"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(CC_DEPS)$(C++_DEPS)$(OBJS)$(C_UPPER_DEPS)$(CXX_DEPS)$(SECONDARY_FLASH)$(SECONDARY_SIZE)$(ASM_DEPS)$(S_UPPER_DEPS)$(C_DEPS)$(CPP_DEPS) PWM_Led.elf
+	-$(RM) $(CC_DEPS)$(C++_DEPS)$(OBJS)$(C_UPPER_DEPS)$(CXX_DEPS)$(SECONDARY_FLASH)$(SECONDARY_SIZE)$(ASM_DEPS)$(S_UPPER_DEPS)$(C_DEPS)$(CPP_DEPS) Robot_Ver1.0.elf
 	-@echo ' '
 
 secondary-outputs: $(SECONDARY_FLASH) $(SECONDARY_SIZE)
