@@ -40,13 +40,13 @@ void detection(void);
 void main (void)
 {
 	init_LCD();									//Initialise lcd
-	lcd_putstring("Robot Ver1.0");		//Display string on line 1
-	lcd_command(LINE_TWO);					//Move cursor to line 2
-	lcd_putstring("Group 21");				//Display string on line 2
+	lcd_putstring("Hopefully this works");		//Display string on line 1
+	lcd_command(LINE_TWO);						//Move cursor to line 2
+	lcd_putstring("pls pls pls");				//Display string on line 2
 
 	//calling initialisation functions
-	init_sensors();
 	init_PWM();
+	init_sensors();
 
 	//waits until button pressed to start code
 	while ((GPIOA->IDR && SW1) != 0);

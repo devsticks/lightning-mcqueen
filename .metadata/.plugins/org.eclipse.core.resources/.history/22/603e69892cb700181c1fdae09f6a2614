@@ -21,8 +21,6 @@
 //====================================================================
 #define DELAY1 255
 #define DELAY2 2000
-
-#define SW1 GPIO_IDR_1
 //====================================================================
 // GLOBAL VARIABLES
 //====================================================================
@@ -40,16 +38,13 @@ void detection(void);
 void main (void)
 {
 	init_LCD();									//Initialise lcd
-	lcd_putstring("Robot Ver1.0");		//Display string on line 1
-	lcd_command(LINE_TWO);					//Move cursor to line 2
-	lcd_putstring("Group 21");				//Display string on line 2
+	lcd_putstring("Hopefully this works");		//Display string on line 1
+	lcd_command(LINE_TWO);						//Move cursor to line 2
+	lcd_putstring("pls pls pls");				//Display string on line 2
 
 	//calling initialisation functions
-	init_sensors();
 	init_PWM();
-
-	//waits until button pressed to start code
-	while ((GPIOA->IDR && SW1) != 0);
+	init_sensors();
 
 	//infinite loop
 	while (1) {
@@ -59,12 +54,12 @@ void main (void)
 		if (farLeft == 1) {
 			TIM2->CCR3 = 100*80;
 			TIM2->CCR4 = 50*80;
-		}//end if
+		}
 
 		else {
 			TIM2->CCR3 = 50*80;
 			TIM2->CCR4 = 100*80;
-		}//end else
+		}
 		Delay();
 
 	}//end forever
@@ -76,20 +71,26 @@ void main (void)
 void init_PWM(){
 
 	//enable clocks
+	RCC->AHBENR |= RCC_AHBENR_GPIOBEN;
 	RCC->APB1ENR |= RCC_APB1ENR_TIM2EN;
+
+	//define GPIOs to be Alternative Function
+	GPIOB->MODER |= GPIO_MODER_MODER10_1; // PB10 = AF
+	GPIOB->MODER |= GPIO_MODER_MODER11_1; // PB11 = AF
 
 	//Map TIM2_CH3 to pin10, TIM2_CH4 to pin11
 	GPIOB->AFR[1] |= (2 << (4*(10 - 8))); // PB10_AF = AF2 (ie: map to TIM2_CH3) map pin 11 to tim1
 	GPIOB->AFR[1] |= (2 << (4*(11 - 8))); // PB11_AF = AF2 (ie: map to TIM2_CH4)
 
-	//define auto reload register
+	//define initial frequency
+
 	TIM2->ARR = 8000;
 
-	//specify PWM mode: We want mode 1
+	//Specify PWM mode: We want mode 1
 	TIM2->CCMR2 |= (TIM_CCMR2_OC3M_2 | TIM_CCMR2_OC3M_1); // PWM Mode 1
 	TIM2->CCMR2 |= (TIM_CCMR2_OC4M_2 | TIM_CCMR2_OC4M_1); // PWM Mode 1
 
-	//enable the OC channels
+	  // enable the OC channels
 	TIM2->CCER |= TIM_CCER_CC3E; //channel 3
 	TIM2->CCER |= TIM_CCER_CC4E; //channel 4
 
@@ -98,21 +99,10 @@ void init_PWM(){
 }//end init_PWM
 
 void init_sensors(){
-
 	//enable clock
-	RCC->AHBENR |= RCC_AHBENR_GPIOAEN;
-	RCC->AHBENR |= RCC_AHBENR_GPIOBEN;
-
+	RCC->AHBENR |= RCC_AHBENR_GPIOAEN; //enable clock
 	GPIOA->MODER &= ~GPIO_MODER_MODER4; //PA4 for IR LED 1 Input
 	GPIOA->PUPDR |= GPIO_PUPDR_PUPDR4_0;
-
-	//define GPIOs to be Alternative Function for PWM
-	GPIOB->MODER |= GPIO_MODER_MODER10_1;
-	GPIOB->MODER |= GPIO_MODER_MODER11_1;
-
-	//initiate button 1 and make it pull down
-	GPIOA->MODER &= ~GPIO_MODER_MODER1;
-	GPIOA->PUPDR |= GPIO_PUPDR_PUPDR1_0;
 }//end init_sensors
 
 void Delay() {
