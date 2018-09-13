@@ -13,5 +13,5 @@ Motors:
 
 Combination:
  - determine how much to vary motors when certain sensors are met
- - create blocks to help increaxe efficiency (variables, code blocks to enable)
+ - create blocks to help increase efficiency (variables, code blocks to enable)
 
