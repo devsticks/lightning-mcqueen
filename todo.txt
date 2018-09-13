@@ -1,0 +1,17 @@
+To Do:
+
+Sensors:
+ - determine which pins to use for the line sensors
+ - determine which pins to use for the distance sensors
+ - incorporate the ADC if we are to use analog signals for the line sensor
+
+
+Motors:
+ - determine optimal frequency for PWM (currently at 6kHz)
+ - determine "straight" line voltage
+ - determine the stopping voltage
+
+Combination:
+ - determine how much to vary motors when certain sensors are met
+ - create blocks to help increaxe efficiency (variables, code blocks to enable)
+
