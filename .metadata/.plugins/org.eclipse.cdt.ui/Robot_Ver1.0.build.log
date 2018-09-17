@@ -1,4 +1,4 @@
-10:15:35 **** Incremental Build of configuration Debug for project Robot_Ver1.0 ****
+17:16:26 **** Build of configuration Debug for project Robot_Ver1.0 ****
 make all 
 Building file: ../src/main.c
 Invoking: GNU ARM Cross C Compiler
@@ -17,9 +17,9 @@ Finished building: Robot_Ver1.0.hex
 Invoking: GNU ARM Cross Print Size
 arm-none-eabi-size --format=berkeley "Robot_Ver1.0.elf"
    text	   data	    bss	    dec	    hex	filename
-   5263	    176	    420	   5859	   16e3	Robot_Ver1.0.elf
+   5355	    176	    420	   5951	   173f	Robot_Ver1.0.elf
 Finished building: Robot_Ver1.0.siz
  
 
-10:15:35 Build Finished (took 445ms)
+17:16:27 Build Finished (took 1s.450ms)
 

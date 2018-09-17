@@ -23,6 +23,18 @@
 #define DELAY2 2000
 
 #define SW1 GPIO_IDR_1
+
+#define FAR_LEFT GPIO_IDR_6
+#define LEFT GPIO_IDR_5
+#define NEAR_LEFT GPIO_IDR_4
+
+#define NEAR_RIGHT GPIO_IDR_3
+#define RIGHT GPIO_IDR_15
+#define FAR_RIGHT GPIO_IDR_14
+
+#define DISTANCE1 GPIO_IDR_11
+#define DISTANCE2 GPIO_IDR_10
+
 //====================================================================
 // GLOBAL VARIABLES
 //====================================================================
@@ -103,7 +115,7 @@ void init_sensors(){
 	RCC->AHBENR |= RCC_AHBENR_GPIOAEN;
 	RCC->AHBENR |= RCC_AHBENR_GPIOBEN;
 
-	GPIOA->MODER &= ~GPIO_MODER_MODER4; //PA4 for IR LED 1 Input
+	GPIOA->MODER &= ~GPIO_MODER_MODER4; //PA4 for IR LED 1 Input simulation
 	GPIOA->PUPDR |= GPIO_PUPDR_PUPDR4_0;
 
 	//define GPIOs to be Alternative Function for PWM
@@ -113,6 +125,19 @@ void init_sensors(){
 	//initiate button 1 and make it pull down
 	GPIOA->MODER &= ~GPIO_MODER_MODER1;
 	GPIOA->PUPDR |= GPIO_PUPDR_PUPDR1_0;
+
+	//line sensors (GPIO inputs)
+	GPIOA->MODER &= ~GPIO_MODER_MODER14_0;	//PA14
+	GPIOA->MODER &= ~GPIO_MODER_MODER15_0;  //PA15
+	GPIOB->MODER &= ~GPIO_MODER_MODER3_0;	//PB3
+	GPIOB->MODER &= ~GPIO_MODER_MODER4_0;	//PB4
+	GPIOB->MODER &= ~GPIO_MODER_MODER5_0;	//PB5
+	GPIOB->MODER &= ~GPIO_MODER_MODER6_0;	//PB6
+
+	//distance sensors (GPIO inputs)
+	GPIOA->MODER &= ~GPIO_MODER_MODER11_0;	//PA11
+	GPIOA->MODER &= ~GPIO_MODER_MODER10_0;  //PA10
+
 }//end init_sensors
 
 void Delay() {
